@@ -1,0 +1,37 @@
+# Exercise 1: Import, Load, and View the Dataset
+# Dataset: Campus Electricity ML Dataset
+
+# Step 1: Import necessary libraries
+import pandas as pd
+import numpy as np
+
+# Step 2: Load the dataset
+df = pd.read_csv("campus_electricity_ml_dataset.csv")
+
+# Step 3: View basic information about the dataset
+print("=" * 60)
+print("       CAMPUS ELECTRICITY ML DATASET - OVERVIEW")
+print("=" * 60)
+
+# 3a. Shape of the dataset (rows, columns)
+print(f"\nDataset Shape: {df.shape[0]} rows × {df.shape[1]} columns")
+
+# 3b. Column names and data types
+print("\n--- Column Names and Data Types ---")
+print(df.dtypes)
+
+# 3c. First 5 rows
+print("\n--- First 5 Rows (head) ---")
+print(df.head())
+
+# 3d. Last 5 rows
+print("\n--- Last 5 Rows (tail) ---")
+print(df.tail())
+
+# 3e. Random sample of 5 rows
+print("\n--- Random Sample of 5 Rows ---")
+print(df.sample(5, random_state=42))
+
+# 3f. Dataset info (non-null counts and memory usage)
+print("\n--- Dataset Info ---")
+print(df.info())
