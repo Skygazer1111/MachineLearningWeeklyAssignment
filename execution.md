@@ -49,8 +49,18 @@ Dataset Shape: 13440 rows x 25 columns
 Column names and data types
 First 5 rows
 Last 5 rows
+100th row
 Random sample rows
 Dataset info
+```
+
+View the 100th row the same way as `head` and `tail`. Pandas uses 0-based indexing, so the 100th row is at index 99:
+
+```python
+df.head()          # first 5 rows
+df.tail()          # last 5 rows
+df.iloc[99:100]    # 100th row
+df.sample(5)       # 5 random rows
 ```
 
 ## 4. Exercise 2: Summary and Statistics

@@ -30,10 +30,14 @@ print(df.head())
 print("\n--- Last 5 Rows (tail) ---")
 print(df.tail())
 
-# 3e. Random sample of 5 rows
+# 3e. 100th row (pandas is 0-indexed, so index 99 is the 100th row)
+print("\n--- 100th Row ---")
+print(df.iloc[99:100])
+
+# 3f. Random sample of 5 rows
 print("\n--- Random Sample of 5 Rows ---")
 print(df.sample(5, random_state=42))
 
-# 3f. Dataset info (non-null counts and memory usage)
+# 3g. Dataset info (non-null counts and memory usage)
 print("\n--- Dataset Info ---")
 print(df.info())
