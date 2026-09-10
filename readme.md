@@ -43,6 +43,7 @@ Machine learning models trained on this kind of data can help predict future ele
 | `exercise1_load_view.py` | Imports, loads, and displays an overview of the dataset |
 | `exercise2_summary_statistics.py` | Generates summary statistics and meaningful comparisons from the dataset |
 | `exercise3_linear_regression.py` | Implements Linear Regression to predict electricity usage (`power_kw`) |
+| `exercise4_classification_models.py` | Implements Bayesian Logistic Regression and SVM for anomaly classification |
 | `campus_electricity_ml_dataset.csv` | Original full dataset file, kept locally due to GitHub file size limits |
 
 ## Week 1 Tasks
@@ -61,6 +62,12 @@ Machine learning models trained on this kind of data can help predict future ele
 - Use campus, occupancy, weather, appliance usage, and time-based features
 - Evaluate the model using MAE, MSE, RMSE, and R2 Score
 - Display sample actual vs predicted electricity usage values
+
+### Exercise 4: Classification Models
+- Classify electricity readings as normal or anomalous using `injected_anomaly`
+- Implement Bayesian-style Logistic Regression using L2 regularization as a Gaussian prior approximation
+- Implement a Support Vector Machine classifier
+- Evaluate both models using accuracy, precision, recall, F1 score, and confusion matrix
 
 ## Requirements
 
@@ -84,6 +91,7 @@ python prepare_weekly_experiment_dataset.py
 python exercise1_load_view.py
 python exercise2_summary_statistics.py
 python exercise3_linear_regression.py
+python exercise4_classification_models.py
 ```
 
 ## Notes
