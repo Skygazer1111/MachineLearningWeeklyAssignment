@@ -6,15 +6,17 @@ import pandas as pd
 import numpy as np
 
 # Step 2: Load the dataset
-df = pd.read_csv("campus_electricity_ml_dataset.csv")
+DATASET_FILE = "campus_electricity_weekly_experiment.csv"
+df = pd.read_csv(DATASET_FILE)
 
 # Step 3: View basic information about the dataset
 print("=" * 60)
 print("       CAMPUS ELECTRICITY ML DATASET - OVERVIEW")
 print("=" * 60)
+print(f"\nDataset File: {DATASET_FILE}")
 
 # 3a. Shape of the dataset (rows, columns)
-print(f"\nDataset Shape: {df.shape[0]} rows × {df.shape[1]} columns")
+print(f"\nDataset Shape: {df.shape[0]} rows x {df.shape[1]} columns")
 
 # 3b. Column names and data types
 print("\n--- Column Names and Data Types ---")

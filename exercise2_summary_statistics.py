@@ -4,7 +4,8 @@
 import pandas as pd
 
 # Load the dataset
-df = pd.read_csv("campus_electricity_ml_dataset.csv")
+DATASET_FILE = "campus_electricity_weekly_experiment.csv"
+df = pd.read_csv(DATASET_FILE)
 
 print("=" * 55)
 print("  CAMPUS ELECTRICITY DATASET - SUMMARY & STATISTICS")
@@ -12,6 +13,7 @@ print("=" * 55)
 
 # --- Dataset Overview ---
 print("\n>> DATASET OVERVIEW")
+print(f"  Dataset File       : {DATASET_FILE}")
 print(f"  Total Records      : {df.shape[0]:,}")
 print(f"  Total Features     : {df.shape[1]}")
 print(f"  Buildings           : {df['building_id'].nunique()}")
@@ -52,7 +54,7 @@ peak = df.groupby("peak_period").agg(
     Avg_Power_kW=("power_kw", "mean"),
     Avg_Cost_INR=("energy_cost_inr", "mean")
 ).round(2)
-peak.index = ["Off-Peak", "Peak"]
+peak.index = peak.index.map({0: "Off-Peak", 1: "Peak"})
 print(peak.to_string())
 
 # --- Weekday vs Weekend ---
@@ -62,20 +64,28 @@ weekend = df.groupby("weekend").agg(
     Avg_Cost_INR=("energy_cost_inr", "mean"),
     Avg_Occupancy=("occupancy", "mean")
 ).round(2)
-weekend.index = ["Weekday", "Weekend"]
+weekend.index = weekend.index.map({0: "Weekday", 1: "Weekend"})
 print(weekend.to_string())
 
-# --- Monthly Trend ---
-print("\n>> MONTHLY ENERGY USAGE TREND")
-monthly = df.groupby("month").agg(
+# --- Day-wise Trend ---
+print("\n>> DAY-WISE ENERGY USAGE TREND")
+day_wise = df.groupby("day_of_week").agg(
     Avg_Power_kW=("power_kw", "mean"),
     Avg_Cost_INR=("energy_cost_inr", "mean"),
     Avg_Temp_C=("temperature_c", "mean"),
     Avg_AC_Usage_pct=("ac_usage_pct", "mean")
 ).round(2)
-month_names = {1: "January", 2: "February", 3: "March", 4: "April", 5: "May", 6: "June"}
-monthly.index = monthly.index.map(month_names)
-print(monthly.to_string())
+day_names = {
+    0: "Monday",
+    1: "Tuesday",
+    2: "Wednesday",
+    3: "Thursday",
+    4: "Friday",
+    5: "Saturday",
+    6: "Sunday",
+}
+day_wise.index = day_wise.index.map(day_names)
+print(day_wise.to_string())
 
 # --- Time of Day Analysis ---
 print("\n>> TIME OF DAY ANALYSIS")
@@ -99,7 +109,7 @@ holiday = df.groupby("holiday").agg(
     Avg_Cost_INR=("energy_cost_inr", "mean"),
     Avg_Occupancy=("occupancy", "mean")
 ).round(2)
-holiday.index = ["Regular Day", "Holiday"]
+holiday.index = holiday.index.map({0: "Regular Day", 1: "Holiday"})
 print(holiday.to_string())
 
 # --- Exam Period vs Normal Period ---
@@ -109,7 +119,7 @@ exam = df.groupby("exam_period").agg(
     Avg_Cost_INR=("energy_cost_inr", "mean"),
     Avg_Occupancy=("occupancy", "mean")
 ).round(2)
-exam.index = ["Normal Period", "Exam Period"]
+exam.index = exam.index.map({0: "Normal Period", 1: "Exam Period"})
 print(exam.to_string())
 
 # --- Floor-wise Comparison ---
@@ -132,7 +142,6 @@ print(f"\n  Higher temperature -> Higher AC usage -> Higher power consumption")
 print("\n>> ENVIRONMENTAL CONDITIONS (Average)")
 print(f"  Temperature        : {df['temperature_c'].mean():.2f} C")
 print(f"  Humidity           : {df['humidity_pct'].mean():.2f} %")
-print(f"  Solar Irradiance   : {df['solar_irradiance_w_m2'].mean():.2f} W/m2")
 
 # --- Anomalies ---
 anomaly_count = df['injected_anomaly'].sum()
