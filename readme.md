@@ -1,4 +1,4 @@
-# Machine Learning Weekly Assignment - Week 1
+# Machine Learning Weekly Assignment 
 
 This repository is part of my **Machine Learning course progress project**. It contains Week 1 exercises focused on importing, exploring, and analyzing a campus electricity dataset using Python and pandas.
 
